@@ -1,0 +1,15 @@
+{
+  "name": "traslate-api",
+  "description": "A simple translation API using Puppeteer and Express via Google Translate",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "puppeteer": "^24.11.1"
+  }
+}
