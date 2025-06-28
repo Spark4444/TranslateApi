@@ -25,3 +25,4 @@ npm start
 4. The API will return the translated text in JSON format.
 
 ## Current state of the project
+finished
