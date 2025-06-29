@@ -85,7 +85,30 @@ function promptForPort() {
     });
 
     return new Promise((resolve) => {
+        // If the user does not input anything within 20 seconds, default to port 3000
+        let timeout;
+        
+        // Function to start/restart the timeout
+        function startTimeout() {
+            if (timeout) clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                console.log("\nNo input received after 20 seconds. Using default port 3000.");
+                rl.close();
+                resolve(3000);
+            }, 20000); // 20 seconds timeout
+        }
+        
+        // Start initial timeout
+        startTimeout();
+        
+        // Listen for any input to restart the timeout
+        process.stdin.on("data", () => {
+            startTimeout();
+        });
+
         rl.question("Enter the port number to run the server (default: 3000): ", (answer) => {
+            clearTimeout(timeout);
+            process.stdin.removeAllListeners("data"); // Clean up listener
             rl.close();
             let port = parseInt(answer) || 3000;
             resolve(port);
