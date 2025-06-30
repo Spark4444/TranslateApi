@@ -1,8 +1,17 @@
 let express = require("express");
 let translate = require("./translate");
 let readline = require("readline");
+let cors = require("cors");
 
 let app = express();
+
+// Enable CORS for all routes
+app.use(cors({
+    origin: true,
+    credentials: true,
+    methods: ["GET", "OPTIONS"],
+    allowedHeaders: ["Content-Type"]
+}));
 
 // Pretty print JSON responses
 app.set("json spaces", 2);
